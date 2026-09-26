@@ -1,0 +1,286 @@
+============================================================
+P01-FortiGate-Security-Lab
+CONFIGURACIÓN DOCUMENTADA DEL FORTIGATE
+============================================================
+
+Estudiante: Fred Sneyder Castillo Apolinar
+Matrícula: 2025-2175
+Materia: Seguridad de Redes
+Maestro: Jonatan Rondon
+
+FortiGate: FortiGate-VM64-KVM
+FortiOS: 7.0.9 build0444
+
+============================================================
+1. INTERFACES
+============================================================
+
+Comando:
+show system interface
+
+config system interface
+    edit "port1"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping https ssh http fgfm
+        set type physical
+        set snmp-index 1
+    next
+    edit "port2"
+        set vdom "root"
+        set ip 10.21.75.1 255.255.255.128
+        set allowaccess ping https http
+        set type physical
+        set snmp-index 2
+    next
+    edit "port3"
+        set vdom "root"
+        set ip 10.21.75.129 255.255.255.240
+        set allowaccess ping
+        set type physical
+        set snmp-index 3
+    next
+    edit "port4"
+        set vdom "root"
+        set ip 10.21.75.145 255.255.255.240
+        set allowaccess ping
+        set type physical
+        set snmp-index 4
+    next
+    edit "port5"
+        set vdom "root"
+        set type physical
+        set snmp-index 5
+    next
+    edit "port6"
+        set vdom "root"
+        set type physical
+        set snmp-index 6
+    next
+    edit "port7"
+        set vdom "root"
+        set type physical
+        set snmp-index 7
+    next
+    edit "port8"
+        set vdom "root"
+        set type physical
+        set snmp-index 8
+    next
+    edit "port9"
+        set vdom "root"
+        set type physical
+        set snmp-index 9
+    next
+    edit "port10"
+        set vdom "root"
+        set type physical
+        set snmp-index 10
+    next
+    edit "naf.root"
+        set vdom "root"
+        set type tunnel
+        set src-check disable
+        set snmp-index 11
+    next
+    edit "l2t.root"
+        set vdom "root"
+        set type tunnel
+        set snmp-index 12
+    next
+    edit "ssl.root"
+        set vdom "root"
+        set alias "SSL VPN interface"
+        set type tunnel
+        set snmp-index 13
+    next
+    edit "fortilink"
+        set vdom "root"
+        set fortilink enable
+        set ip 10.255.1.1 255.255.255.0
+        set allowaccess ping fabric
+        set type aggregate
+        set lldp-reception enable
+        set lldp-transmission enable
+        set snmp-index 14
+    next
+end
+
+============================================================
+2. RUTA POR DEFECTO
+============================================================
+
+Comando:
+show router static
+
+config router static
+    edit 1
+        set gateway 192.168.133.2
+        set device "port1"
+    next
+end
+
+Ruta:
+0.0.0.0/0
+Gateway: 192.168.133.2
+Interface: port1
+
+============================================================
+3. DHCP
+============================================================
+
+Comando:
+show system dhcp server
+
+config system dhcp server
+    edit 1
+        set ntp-service local
+        set default-gateway 10.255.1.1
+        set netmask 255.255.255.0
+        set interface "fortilink"
+        config ip-range
+            edit 1
+                set start-ip 10.255.1.2
+                set end-ip 10.255.1.254
+            next
+        end
+        set vci-match enable
+        set vci-string "FortiSwitch" "FortiExtender"
+    next
+    edit 2
+        set dns-service default
+        set default-gateway 10.21.75.1
+        set netmask 255.255.255.128
+        set interface "port2"
+        config ip-range
+            edit 1
+                set start-ip 10.21.75.10
+                set end-ip 10.21.75.100
+            next
+        end
+    next
+end
+
+DHCP de Usuarios:
+Interface: port2
+Gateway: 10.21.75.1
+Mask: 255.255.255.128 (/25)
+Range: 10.21.75.10 - 10.21.75.100
+DNS service: default
+
+============================================================
+4. FIREWALL POLICIES
+============================================================
+
+Comando:
+show firewall policy
+
+config firewall policy
+    edit 1
+        set name "Usuarios_a_Internet"
+        set uuid b54d1ec4-b7b0-51f1-21f8-2933c4ee3975
+        set srcintf "port2"
+        set dstintf "port1"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set utm-status enable
+        set ssl-ssh-profile "deep-inspection"
+        set file-filter-profile "Bloquear_EXE"
+        set logtraffic all
+        set nat enable
+    next
+    edit 2
+        set name "Usuarios_a_WEB"
+        set uuid 4f41dd44-b7b1-51f1-99e4-51171820e2ca
+        set srcintf "port2"
+        set dstintf "port3"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "WEB-SERVER"
+        set schedule "always"
+        set service "HTTPS" "HTTP"
+        set utm-status enable
+        set profile-protocol-options "default-1"
+        set ssl-ssh-profile "custom-deep-inspection"
+        set file-filter-profile "Bloquear_EXE"
+        set ips-sensor "IPS_SQLi_Cuarentena"
+        set logtraffic all
+        set logtraffic-start enable
+    next
+    edit 3
+        set name "Usuarios_a_DB_BLOQUEADO"
+        set uuid af77d268-b7b1-51f1-0549-e0d39d77713f
+        set srcintf "port2"
+        set dstintf "port4"
+        set srcaddr "all"
+        set dstaddr "DB-SERVER"
+        set schedule "always"
+        set service "MYSQL"
+        set logtraffic all
+    next
+    edit 4
+        set name "WEB_a_DB_solo_3306"
+        set uuid d384b95a-b7b1-51f1-4253-817233ffffec
+        set srcintf "port3"
+        set dstintf "port4"
+        set action accept
+        set srcaddr "WEB-SERVER"
+        set dstaddr "DB-SERVER"
+        set schedule "always"
+        set service "MYSQL"
+    next
+end
+
+============================================================
+5. RESUMEN FUNCIONAL
+============================================================
+
+port1:
+- WAN
+- DHCP
+- Gateway: 192.168.133.2
+
+port2:
+- Usuarios
+- 10.21.75.1/25
+- DHCP: 10.21.75.10 - 10.21.75.100
+
+port3:
+- WEB-SERVER
+- 10.21.75.129/28
+
+port4:
+- DB-SERVER
+- 10.21.75.145/28
+
+Políticas:
+1. Usuarios_a_Internet
+   - Usuarios -> Internet
+   - ACCEPT
+   - NAT habilitado
+   - File Filter: Bloquear_EXE
+
+2. Usuarios_a_WEB
+   - Usuarios -> WEB-SERVER
+   - HTTP + HTTPS
+   - ACCEPT
+   - SSL/SSH profile: custom-deep-inspection
+   - IPS sensor: IPS_SQLi_Cuarentena
+   - File Filter: Bloquear_EXE
+   - Logging habilitado
+
+3. Usuarios_a_DB_BLOQUEADO
+   - Usuarios -> DB-SERVER
+   - MYSQL/3306
+   - Política de bloqueo
+   - Logging habilitado
+
+4. WEB_a_DB_solo_3306
+   - WEB-SERVER -> DB-SERVER
+   - MYSQL/3306
+   - ACCEPT
+
+============================================================
