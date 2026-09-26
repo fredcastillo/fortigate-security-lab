@@ -1,0 +1,10 @@
+Estudiante: Fred Sneyder Castillo Apolinar
+Matrícula: 2025-2175
+Materia: Seguridad de Redes
+Maestro: Jonatan Rondon
+
+Repositorio:
+[https://github.com/fredcastillo/SEGURIDAD-DE-REDES/tree/main/P01-FortiGate-Security-Lab]
+
+Video:
+[INSERTAR ENLACE DEL VIDEO]

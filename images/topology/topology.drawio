@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2026-09-25T08:00:00.000Z" agent="OpenAI" version="24.7.17" type="device">
+  <diagram id="topology" name="Topology">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="internet" value="Internet&#xa;WAN / port1 (DHCP)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="500" y="50" width="200" height="70" as="geometry"/></mxCell>
+        <mxCell id="fg" value="FortiGate-VM64-KVM&#xa;v7.0.9 build0444" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="470" y="170" width="260" height="100" as="geometry"/></mxCell>
+        <mxCell id="sw" value="Cisco IOSvL2&#xa;VLAN 10 — USERS" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="70" y="380" width="240" height="100" as="geometry"/></mxCell>
+        <mxCell id="web" value="WEB-SERVER-LAB&#xa;10.21.75.130/28&#xa;Apache + PHP + HTTPS" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="380" width="240" height="100" as="geometry"/></mxCell>
+        <mxCell id="db" value="DB-SERVER-LAB&#xa;10.21.75.146/28&#xa;MariaDB" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="890" y="380" width="240" height="100" as="geometry"/></mxCell>
+        <mxCell id="pc1" value="PC1&#xa;10.21.75.10/25" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="50" y="540" width="150" height="60" as="geometry"/></mxCell>
+        <mxCell id="browser" value="Browser-PC&#xa;10.21.75.110/25" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="230" y="540" width="170" height="60" as="geometry"/></mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="internet" target="fg"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fg" target="sw"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fg" target="web"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fg" target="db"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sw" target="pc1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sw" target="browser"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

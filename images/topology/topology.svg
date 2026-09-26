@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<rect width="1200" height="700" fill="#ffffff"/>
+<style>
+.t{font-family:Arial,sans-serif;fill:#111}.title{font-size:28px;font-weight:700}.h{font-size:18px;font-weight:700}.p{font-size:14px}.box{fill:#f7f7f7;stroke:#222;stroke-width:2}.line{stroke:#222;stroke-width:3;fill:none}.small{font-size:12px;fill:#444}
+</style>
+<text x="600" y="45" text-anchor="middle" class="t title">P01 — FortiGate Security Lab</text>
+<rect x="515" y="85" width="170" height="70" rx="10" class="box"/>
+<text x="600" y="112" text-anchor="middle" class="t h">Internet</text>
+<text x="600" y="135" text-anchor="middle" class="t p">WAN / port1 (DHCP)</text>
+<rect x="475" y="205" width="250" height="95" rx="10" class="box"/>
+<text x="600" y="240" text-anchor="middle" class="t h">FortiGate-VM64-KVM</text>
+<text x="600" y="263" text-anchor="middle" class="t p">v7.0.9 build0444</text>
+<text x="600" y="283" text-anchor="middle" class="t small">port2 / port3 / port4</text>
+<path d="M600 155 V205" class="line"/>
+<text x="620" y="182" class="t small">port1</text>
+<rect x="70" y="420" width="250" height="110" rx="10" class="box"/>
+<text x="195" y="455" text-anchor="middle" class="t h">Cisco IOSvL2</text>
+<text x="195" y="480" text-anchor="middle" class="t p">VLAN 10 — USERS</text>
+<text x="195" y="503" text-anchor="middle" class="t small">Gi0/0 uplink • Gi0/1 PC1 • Gi0/2 Browser-PC</text>
+<rect x="475" y="420" width="250" height="110" rx="10" class="box"/>
+<text x="600" y="455" text-anchor="middle" class="t h">WEB-SERVER-LAB</text>
+<text x="600" y="480" text-anchor="middle" class="t p">10.21.75.130/28</text>
+<text x="600" y="503" text-anchor="middle" class="t small">Apache + PHP + HTTPS • port3</text>
+<rect x="880" y="420" width="250" height="110" rx="10" class="box"/>
+<text x="1005" y="455" text-anchor="middle" class="t h">DB-SERVER-LAB</text>
+<text x="1005" y="480" text-anchor="middle" class="t p">10.21.75.146/28</text>
+<text x="1005" y="503" text-anchor="middle" class="t small">MariaDB • port4</text>
+<path d="M520 300 L245 420" class="line"/>
+<path d="M600 300 V420" class="line"/>
+<path d="M680 300 L995 420" class="line"/>
+<text x="355" y="345" class="t small">port2 — 10.21.75.1/25</text>
+<text x="618" y="360" class="t small">port3 — 10.21.75.129/28</text>
+<text x="815" y="345" class="t small">port4 — 10.21.75.145/28</text>
+<rect x="40" y="585" width="170" height="60" rx="8" class="box"/>
+<text x="125" y="612" text-anchor="middle" class="t p">PC1</text>
+<text x="125" y="632" text-anchor="middle" class="t small">10.21.75.10/25</text>
+<rect x="245" y="585" width="170" height="60" rx="8" class="box"/>
+<text x="330" y="612" text-anchor="middle" class="t p">Browser-PC</text>
+<text x="330" y="632" text-anchor="middle" class="t small">10.21.75.110/25</text>
+<path d="M170 530 L125 585" class="line"/>
+<path d="M245 530 L330 585" class="line"/>
+<text x="600" y="665" text-anchor="middle" class="t small">WEB → DB traffic is forced through FortiGate on dedicated interfaces.</text>
+</svg>
