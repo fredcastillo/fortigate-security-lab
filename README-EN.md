@@ -16,7 +16,7 @@
 
 ## 🎥 Demonstration Video
 
-**[▶ Watch demonstration video](VIDEO_URL)**
+**[▶ Watch demonstration video](https://youtu.be/8EfwmGe45bI)**
 
 ---
 
