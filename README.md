@@ -20,7 +20,7 @@
 
 ## 🎥 Video de demostración
 
-[![Watch demonstration video](https://img.youtube.com/vi/8EfwmGe45bI/maxresdefault.jpg)](https://www.youtube.com/watch?v=8EfwmGe45bI)
+[![Watch demonstration video](https://img.youtube.com/vi/8EfwmGe45bI/maxresdefault.jpg?v=2/maxresdefault.jpg)](https://www.youtube.com/watch?v=8EfwmGe45bI)
 
 ---
 
