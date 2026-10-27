@@ -1,6 +1,6 @@
 🇪🇸 **Español** | 🇬🇧 [English](README-EN.md)
 
-<h1 align="center">P01 — Laboratorio de Seguridad FortiGate</h1>
+<h1 align="center">Laboratorio de Seguridad FortiGate</h1>
 
 <p align="center">
   <a href="https://github.com/fredcastillo/ADDS-Lab"><img src="https://img.shields.io/badge/Laboratorio-GNS3-7d5fff?style=for-the-badge" alt="GNS3"></a>
