@@ -1,4 +1,4 @@
-<h1 align="center">P01 — FortiGate Security Lab</h1>
+<h1 align="center">FortiGate Security Lab</h1>
 
 <p align="center">
   <a href="https://github.com/fredcastillo/ADDS-Lab"><img src="https://img.shields.io/badge/Lab-GNS3-7d5fff?style=for-the-badge" alt="GNS3"></a>
